@@ -1,4 +1,4 @@
-package de.leonheuer.skycave.skybeecore.models
+package de.leonheuer.skycave.skybeecore.model
 
 import de.leonheuer.skycave.skybeecore.enums.ChatChannel
 import org.bukkit.Location

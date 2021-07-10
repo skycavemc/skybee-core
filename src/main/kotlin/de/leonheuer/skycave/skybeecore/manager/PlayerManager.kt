@@ -1,6 +1,6 @@
 package de.leonheuer.skycave.skybeecore.manager
 
-import de.leonheuer.skycave.skybeecore.models.TemporaryUser
+import de.leonheuer.skycave.skybeecore.model.TemporaryUser
 import de.leonheuer.skycave.skybeecore.util.RandomUtil
 import org.bukkit.entity.Player
 

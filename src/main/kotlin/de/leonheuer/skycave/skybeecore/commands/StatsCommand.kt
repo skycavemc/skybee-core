@@ -2,7 +2,7 @@ package de.leonheuer.skycave.skybeecore.commands
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.enums.Message
-import de.leonheuer.skycave.skybeecore.models.User
+import de.leonheuer.skycave.skybeecore.model.User
 import de.leonheuer.skycave.skybeecore.util.DataUtil
 import org.bukkit.Bukkit
 import org.bukkit.command.Command

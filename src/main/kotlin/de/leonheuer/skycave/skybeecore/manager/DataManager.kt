@@ -1,6 +1,6 @@
 package de.leonheuer.skycave.skybeecore.manager
 
-import de.leonheuer.skycave.skybeecore.models.User
+import de.leonheuer.skycave.skybeecore.model.User
 import de.leonheuer.skycave.skybeecore.util.DataUtil
 import org.bukkit.entity.Player
 import java.util.*

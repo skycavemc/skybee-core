@@ -2,9 +2,11 @@ package de.leonheuer.skycave.skybeecore.util
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.enums.ChatChannel
-import de.leonheuer.skycave.skybeecore.models.User
+import de.leonheuer.skycave.skybeecore.model.CustomItem
+import de.leonheuer.skycave.skybeecore.model.User
 import org.bukkit.Bukkit
 import org.bukkit.Location
+import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.json.simple.JSONArray
