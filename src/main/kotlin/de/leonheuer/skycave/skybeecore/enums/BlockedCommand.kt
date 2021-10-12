@@ -7,6 +7,7 @@ enum class BlockedCommand(val content: String) {
     HELP("help"),
     VER("ver"),
     ICANHASBUKKIT("icanhasbukkit"),
-    ME("me")
+    ME("me"),
+    MV("mv")
 
 }
