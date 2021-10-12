@@ -24,7 +24,7 @@ enum class Message(private val message: String) {
     HELP_IS("&a/is &8» &7Teleportiert dich auf deine Insel. Falls du keine hast, wird eine neue erstellt."),
     HELP_SPAWN("&a/spawn &8» &7Teleportiert dich zum Spawn."),
     HELP_MSG("&a/msg <spieler> <nachricht> &8» &7Versendet eine private Nachricht."),
-    HELP_WIKI("&eFür eine ausführliche Befehlsübersicht siehe: &b&nhttps://skybee.gitbook.io/wiki/"),
+    HELP_WIKI("&eFür eine ausführliche Befehlsübersicht siehe: &b&nhttps://skycave.gitbook.io/skyblock/"),
 
     // captcha messages
     CAPTCHA_NOT_DONE("&cDu hast die Bestätigung noch nicht vollendet. Dein Bestätigungs-Code lautet &b&l%captcha\n" +
