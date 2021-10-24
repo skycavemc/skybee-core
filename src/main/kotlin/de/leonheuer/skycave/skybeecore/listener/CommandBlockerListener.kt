@@ -24,6 +24,19 @@ class CommandBlockerListener(private val main: SkyBeeCore): Listener {
             return
         }*/
 
+        if (cmd.lowercase().startsWith("/help")) {
+            event.isCancelled = true
+            player.sendMessage("")
+            player.sendMessage(Message.HELP_HEADER.getFormatted())
+            player.sendMessage(Message.HELP_HUB.getFormatted())
+            player.sendMessage(Message.HELP_SPAWN.getFormatted())
+            player.sendMessage(Message.HELP_IS.getFormatted())
+            player.sendMessage(Message.HELP_MSG.getFormatted())
+            player.sendMessage(Message.HELP_WIKI.getFormatted())
+            player.sendMessage("")
+            return
+        }
+
         if (player.hasPermission("skybee.bypass.blockedcommands")) {
             return
         }
@@ -37,16 +50,6 @@ class CommandBlockerListener(private val main: SkyBeeCore): Listener {
                 event.isCancelled = true
                 player.sendMessage(Message.COMMAND_BLOCKED.getMessage())
             }
-        } else if (cmd.lowercase().startsWith("/help")) {
-            event.isCancelled = true
-            player.sendMessage("")
-            player.sendMessage(Message.HELP_HEADER.getFormatted())
-            player.sendMessage(Message.HELP_HUB.getFormatted())
-            player.sendMessage(Message.HELP_SPAWN.getFormatted())
-            player.sendMessage(Message.HELP_IS.getFormatted())
-            player.sendMessage(Message.HELP_MSG.getFormatted())
-            player.sendMessage(Message.HELP_WIKI.getFormatted())
-            player.sendMessage("")
         } else {
             for (blocked in BlockedCommand.values()) {
                 if (cmd.lowercase().startsWith("/" + blocked.content)) {

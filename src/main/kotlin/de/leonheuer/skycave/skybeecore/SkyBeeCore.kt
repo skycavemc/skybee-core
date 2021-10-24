@@ -8,6 +8,7 @@ import de.leonheuer.skycave.skybeecore.manager.HologramManager
 import de.leonheuer.skycave.skybeecore.manager.PlayerManager
 import de.leonheuer.skycave.skybeecore.util.DisplayUtil
 import de.leonheuer.skycave.skybeecore.util.LuckPermsUtil
+import de.leonheuer.skycave.skybeecore.util.TwitchUtil
 import net.luckperms.api.LuckPerms
 import net.milkbowl.vault.chat.Chat
 import net.milkbowl.vault.economy.Economy
@@ -44,8 +45,9 @@ class SkyBeeCore: JavaPlugin() {
         luckPerms = server.servicesManager.getRegistration(LuckPerms::class.java)!!.provider
         /*chat = server.servicesManager.getRegistration(Chat::class.java)!!.provider*/
 
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, { Bukkit.getOnlinePlayers().forEach(DisplayUtil::updateScoreBoard) }, 20L, 20L)
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, { Bukkit.getOnlinePlayers().forEach(DisplayUtil::setTabList) }, 0L, 30L)
+        Bukkit.getScheduler().runTaskTimer(this, Runnable{ Bukkit.getOnlinePlayers().forEach(DisplayUtil::updateScoreBoard) }, 20L, 20L)
+        Bukkit.getScheduler().runTaskTimer(this, Runnable{ Bukkit.getOnlinePlayers().forEach(DisplayUtil::setTabList) }, 0L, 30L)
+        Bukkit.getScheduler().runTaskTimerAsynchronously(this, Runnable{ TwitchUtil.setLiveSuffix("caveclown", "caveclown") }, 0L, 200L)
 
         val pm = Bukkit.getPluginManager()
         /*pm.registerEvents(ChatListener(this), this)

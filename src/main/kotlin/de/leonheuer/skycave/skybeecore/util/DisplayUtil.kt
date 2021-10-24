@@ -111,11 +111,11 @@ object DisplayUtil {
     fun setTabList(player: Player) {
         changedTabList = if (changedTabList) {
             player.setPlayerListHeaderFooter("§f§lSky§3§lCave§b§l.de\n §8» §fDein §bSkyBlock §eNetzwerk! §8« \n",
-                "\n§7✦ §eForum: §f§nskycave.de§r §7✦")
+                "\n§7✦ §eJoine unserem /discord!§r §7✦")
             false
         } else {
             player.setPlayerListHeaderFooter("§f§lSky§3§lCave§b§l.de\n §8» §7Dein §9SkyBlock §6Netzwerk! §8« \n",
-                "\n§7✦ §6Forum: §e§nskycave.de§r §7✦")
+                "\n§7✦ §6Joine unserem /discord!§r §7✦")
             true
         }
     }

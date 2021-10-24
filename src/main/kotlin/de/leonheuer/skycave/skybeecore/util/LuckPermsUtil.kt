@@ -26,4 +26,25 @@ object LuckPermsUtil {
         return group.cachedData.metaData.prefix
     }
 
+    fun setSuffix(player: Player, suffix: String) {
+        val user = luckPerms.getPlayerAdapter(Player::class.java).getUser(player)
+        val suffixList = user.cachedData.metaData.suffixes
+
+        var weight = 0
+        for (w in suffixList.keys) {
+            if (w > weight) weight = w
+        }
+        suffixList[weight + 1] = suffix
+    }
+
+    fun removeSuffix(player: Player, suffix: String) {
+        val user = luckPerms.getPlayerAdapter(Player::class.java).getUser(player)
+        val suffixList = user.cachedData.metaData.suffixes
+        for (k in suffixList.keys) {
+            if (suffixList[k] == suffix) {
+                suffixList.remove(k)
+            }
+        }
+    }
+
 }
