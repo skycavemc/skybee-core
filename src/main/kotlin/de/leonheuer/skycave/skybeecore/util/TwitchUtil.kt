@@ -22,7 +22,7 @@ object TwitchUtil {
 
         val responseCode = conn.responseCode
         if (responseCode != 200) {
-            throw RuntimeException("HttpResponseCode: $responseCode")
+            return false
         }
 
         val reader = InputStreamReader(conn.content as InputStream)
