@@ -57,6 +57,7 @@ class SkyBeeCore: JavaPlugin() {
         pm.registerEvents(CommandBlockerListener(this), this)
         pm.registerEvents(PlayerJoinListener(this), this)
         pm.registerEvents(PlayerLeaveListener(this), this)
+        pm.registerEvents(InventoryClickListener(), this)
         /*Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord")
 
         getCommand("stats")!!.setExecutor(StatsCommand())*/

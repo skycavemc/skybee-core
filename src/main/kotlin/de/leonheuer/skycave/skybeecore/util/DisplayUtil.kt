@@ -15,7 +15,7 @@ object DisplayUtil {
 
     @Suppress("Deprecation")
     fun setScoreBoard(player: Player) {
-        val board = Bukkit.getScoreboardManager().newScoreboard
+        val board = Bukkit.getScoreboardManager()!!.newScoreboard
         val obj = board.registerNewObjective("ScoreBoard", "dummy", "§f §r §f §r §e§lSky§6§lBee §r §f §r ")
         obj.displaySlot = DisplaySlot.SIDEBAR
 
@@ -26,7 +26,7 @@ object DisplayUtil {
         Bukkit.getOnlinePlayers().forEach {
             val group = LuckPermsUtil.getUserGroup(it)
             if (group != null) {
-                board.getTeam(LuckPermsUtil.getGroupTabListName(group))?.addPlayer(it)
+                board.getTeam(LuckPermsUtil.getGroupTabListName(group))!!.addPlayer(it)
             }
         }
 

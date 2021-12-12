@@ -7,10 +7,10 @@ import org.bukkit.entity.Player
 
 class TabListManager(private val main: SkyBeeCore) {
 
-    private val scoreBoard = Bukkit.getScoreboardManager().newScoreboard
+    private val sbm = Bukkit.getScoreboardManager()!!
 
     fun setScoreboard(player: Player) {
-        player.scoreboard = scoreBoard
+        player.scoreboard = sbm.newScoreboard
     }
 
     fun updatePlayerName(player: Player) {

@@ -2,11 +2,9 @@ package de.leonheuer.skycave.skybeecore.util
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.enums.ChatChannel
-import de.leonheuer.skycave.skybeecore.model.CustomItem
 import de.leonheuer.skycave.skybeecore.model.User
 import org.bukkit.Bukkit
 import org.bukkit.Location
-import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.json.simple.JSONArray
@@ -21,8 +19,6 @@ import java.net.InetAddress
 import java.time.Duration
 import java.time.LocalDateTime
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 object DataUtil {
 
@@ -90,7 +86,7 @@ object DataUtil {
     fun createAndGetUser(player: Player): User {
         val uuid = player.uniqueId
 
-        val user = User(uuid, player.address.address, hasCompletedCaptcha = false, flyEnabled = false,
+        val user = User(uuid, player.address!!.address, hasCompletedCaptcha = false, flyEnabled = false,
             godModeEnabled = false, LocalDateTime.now(), null, Duration.ZERO, Duration.ZERO, HashMap(),
             ChatChannel.GLOBAL, ArrayList(), msgBlocked = false, msgSpy = false, ArrayList(), null,
             0UL, 0UL, 0UL
@@ -107,7 +103,7 @@ object DataUtil {
         user.homes.keys.forEach {
             val loc = user.homes[it]!!
             val locationObject = JSONObject()
-            locationObject["world"] = loc.world.uid.toString()
+            locationObject["world"] = loc.world!!.uid.toString()
             locationObject["x"] = loc.x
             locationObject["y"] = loc.y
             locationObject["z"] = loc.z

@@ -12,7 +12,7 @@ class HologramManager(private val main: SkyBeeCore) {
     private val hologramMap = HashMap<String, ArmorStand>()
 
     fun createTempHologram(location: Location, text: String, ticks: Long) {
-        val holo = location.world.spawnEntity(location, EntityType.ARMOR_STAND) as ArmorStand
+        val holo = location.world!!.spawnEntity(location, EntityType.ARMOR_STAND) as ArmorStand
         holo.setGravity(false)
         holo.canPickupItems = false
         holo.customName = ChatColor.translateAlternateColorCodes('&', text)
