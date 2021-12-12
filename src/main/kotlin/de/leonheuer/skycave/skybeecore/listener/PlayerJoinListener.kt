@@ -36,14 +36,14 @@ class PlayerJoinListener(private val main: SkyBeeCore): Listener {
         if (user.flyEnabled) {
             if (player.hasPermission("skybee.essentials.fly")) {
                 player.allowFlight = true
-                player.sendMessage(Message.JOIN_FLY.getMessage())
+                player.sendMessage(Message.JOIN_FLY.getString().get())
             } else {
                 user.flyEnabled = false
             }
         }
         if (user.godModeEnabled) {
             if (player.hasPermission("skybee.essentials.god")) {
-                player.sendMessage(Message.JOIN_GOD.getMessage())
+                player.sendMessage(Message.JOIN_GOD.getString().get())
             } else {
                 user.godModeEnabled = false
             }

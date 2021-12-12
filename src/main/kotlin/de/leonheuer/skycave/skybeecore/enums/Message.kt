@@ -1,11 +1,11 @@
 package de.leonheuer.skycave.skybeecore.enums
 
-import org.bukkit.ChatColor
+import de.leonheuer.skycave.skybeecore.model.FormattableString
 
 enum class Message(private val message: String) {
 
-    PREFIX("&e&l| &eSky&6Bee &8» "),
     UNKNOWN_PLAYER("&cDer Spieler %player ist nicht bekannt."),
+    NO_PLAYER("&cDu musst ein Spieler sein."),
 
     // join messages
     JOIN_FLY("&7Dein Fly ist noch aktiviert."),
@@ -14,6 +14,8 @@ enum class Message(private val message: String) {
     // wiki command messages
     WIKI_RAW("&aMinecraft-Wiki: &7https://minecraft.fandom.com/de/wiki/"),
     WIKI_SEARCH("&aSuchergebnisse für '%search' im Minecraft-Wiki: &7https://minecraft.fandom.com/de/wiki/?search=%wiki"),
+
+    SHOWARMOR_SYNTAX("&e/showarmor <Spieler>"),
 
     // command blocker messages
     COMMAND_BLOCKED("&cDieser Befehl wurde blockiert."),
@@ -38,12 +40,8 @@ enum class Message(private val message: String) {
     STATS_LINE_TEAM("&c%property&8: &7%value"),
     ;
 
-    fun getFormatted(): String {
-        return ChatColor.translateAlternateColorCodes('&', message)
-    }
-
-    fun getMessage(): String {
-        return ChatColor.translateAlternateColorCodes('&', PREFIX.message + message)
+    fun getString(): FormattableString {
+        return FormattableString(message)
     }
 
 }

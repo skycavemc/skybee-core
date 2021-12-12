@@ -4,6 +4,7 @@ import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.enums.BlockedCommand
 import de.leonheuer.skycave.skybeecore.enums.Message
 import org.bukkit.Bukkit
+import org.bukkit.command.SimpleCommandMap
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
@@ -15,24 +16,26 @@ class CommandBlockerListener(private val main: SkyBeeCore): Listener {
     fun onCommand(event: PlayerCommandPreprocessEvent) {
         val player = event.player
         val cmd = event.message.split(" ")[0]
-        val cmdMap = Bukkit.getCommandMap()
+        val field = main.server::class.java.getDeclaredField("commandMap")
+        field.isAccessible = true
+        val cmdMap = field.get(main.server) as SimpleCommandMap
 
         /*if (!main.dataManager.getRegisteredUser(player).hasCompletedCaptcha) {
             event.isCancelled = true
             val captcha = main.playerManager.getRegisteredUser(player).captcha
-            player.sendMessage(Message.CAPTCHA_NOT_DONE.getMessage().replace("%captcha", captcha!!))
+            player.sendMessage(Message.CAPTCHA_NOT_DONE.getString().replace("%captcha", captcha!!).get())
             return
         }*/
 
         if (cmd.lowercase().startsWith("/help")) {
             event.isCancelled = true
             player.sendMessage("")
-            player.sendMessage(Message.HELP_HEADER.getFormatted())
-            player.sendMessage(Message.HELP_HUB.getFormatted())
-            player.sendMessage(Message.HELP_SPAWN.getFormatted())
-            player.sendMessage(Message.HELP_IS.getFormatted())
-            player.sendMessage(Message.HELP_MSG.getFormatted())
-            player.sendMessage(Message.HELP_WIKI.getFormatted())
+            player.sendMessage(Message.HELP_HEADER.getString().get(false))
+            player.sendMessage(Message.HELP_HUB.getString().get(false))
+            player.sendMessage(Message.HELP_SPAWN.getString().get(false))
+            player.sendMessage(Message.HELP_IS.getString().get(false))
+            player.sendMessage(Message.HELP_MSG.getString().get(false))
+            player.sendMessage(Message.HELP_WIKI.getString().get(false))
             player.sendMessage("")
             return
         }
@@ -48,13 +51,13 @@ class CommandBlockerListener(private val main: SkyBeeCore): Listener {
             val partial = cmd.split(":").toTypedArray()
             if (!partial[0].contains(" ")) {
                 event.isCancelled = true
-                player.sendMessage(Message.COMMAND_BLOCKED.getMessage())
+                player.sendMessage(Message.COMMAND_BLOCKED.getString().get())
             }
         } else {
             for (blocked in BlockedCommand.values()) {
                 if (cmd.lowercase().startsWith("/" + blocked.content)) {
                     event.isCancelled = true
-                    player.sendMessage(Message.COMMAND_BLOCKED.getMessage())
+                    player.sendMessage(Message.COMMAND_BLOCKED.getString().get())
                 }
             }
         }

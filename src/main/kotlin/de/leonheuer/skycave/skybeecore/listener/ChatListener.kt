@@ -54,7 +54,7 @@ class ChatListener(private val main: SkyBeeCore): Listener {
             val waited = Duration.between(useTime, LocalDateTime.now()).toMinutes()
             if (waited < user.channel.minutes) {
                 event.isCancelled = true
-                player.sendMessage(Message.CHAT_COOLDOWN.getMessage()
+                player.sendMessage(Message.CHAT_COOLDOWN.getString().get()
                     .replace("%until", (user.channel.minutes - waited).toString())
                     .replace("%channel", StringUtils.capitalize(user.channel.toString().lowercase()))
                 )
@@ -64,10 +64,9 @@ class ChatListener(private val main: SkyBeeCore): Listener {
 
         if (user.channel.range > 0) {
             event.isCancelled = true
-            val recipients = Bukkit.getOnlinePlayers().filter { recipient ->
-                player.location.distance(recipient.location) <= user.channel.range
-            }.forEach { recipient ->
-                recipient.sendMessage(event.format)
+            Bukkit.getOnlinePlayers()
+                .filter { recipient -> player.location.distance(recipient.location) <= user.channel.range }
+                .forEach { recipient -> recipient.sendMessage(event.format)
             }
         }
     }

@@ -10,7 +10,7 @@ class WikiCommand: CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         if (args.isEmpty()) {
-            sender.sendMessage(Message.WIKI_RAW.getMessage())
+            sender.sendMessage(Message.WIKI_RAW.getString().get())
             return true
         }
 
@@ -19,7 +19,7 @@ class WikiCommand: CommandExecutor {
         val searchWiki = StringJoiner("+")
         args.forEach(searchWiki::add)
 
-        sender.sendMessage(Message.WIKI_SEARCH.getMessage()
+        sender.sendMessage(Message.WIKI_SEARCH.getString().get()
             .replace("%search", search.toString())
             .replace("%wiki", searchWiki.toString())
         )

@@ -21,6 +21,7 @@ class SkyBeeCore: JavaPlugin() {
 
     companion object {
         const val PERMISSION_GROUPS_MAX_WEIGHT = 150
+        const val PREFIX = "&e&l| &eSky&6Bee &8» "
     }
 
     lateinit var hologramManager: HologramManager
@@ -38,8 +39,8 @@ class SkyBeeCore: JavaPlugin() {
 
     @Suppress("Deprecation")
     override fun onEnable() {
-        /*hologramManager = HologramManager(this)
-        playerManager = PlayerManager()
+        hologramManager = HologramManager(this)
+        /*playerManager = PlayerManager()
         dataManager = DataManager()*/
         econ = server.servicesManager.getRegistration(Economy::class.java)!!.provider
         luckPerms = server.servicesManager.getRegistration(LuckPerms::class.java)!!.provider
@@ -47,12 +48,11 @@ class SkyBeeCore: JavaPlugin() {
 
         Bukkit.getScheduler().runTaskTimer(this, Runnable{ Bukkit.getOnlinePlayers().forEach(DisplayUtil::updateScoreBoard) }, 20L, 20L)
         Bukkit.getScheduler().runTaskTimer(this, Runnable{ Bukkit.getOnlinePlayers().forEach(DisplayUtil::setTabList) }, 0L, 30L)
-        Bukkit.getScheduler().runTaskTimerAsynchronously(this, Runnable{ TwitchUtil.setLiveSuffix("caveclown", "caveclown") }, 0L, 200L)
+        //Bukkit.getScheduler().runTaskTimerAsynchronously(this, Runnable{ TwitchUtil.setLiveSuffix("caveclown", "caveclown") }, 0L, 200L)
 
         val pm = Bukkit.getPluginManager()
         /*pm.registerEvents(ChatListener(this), this)
         pm.registerEvents(CustomDropListener(this), this)
-        pm.registerEvents(HologramProtectionListener(), this)
         pm.registerEvents(PlayerDeathListener(this), this)*/
         pm.registerEvents(CommandBlockerListener(this), this)
         pm.registerEvents(PlayerJoinListener(this), this)
