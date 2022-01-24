@@ -19,7 +19,7 @@ class ShowArmorCommand(private val main: SkyBeeCore): CommandExecutor {
             sender.sendMessage(Message.SHOWARMOR_SYNTAX.getString().get())
             return true
         }
-        val other = Bukkit.getPlayer(args[1])
+        val other = Bukkit.getPlayer(args[0])
         if (other == null) {
             sender.sendMessage(Message.UNKNOWN_PLAYER.getString().get())
             return true
