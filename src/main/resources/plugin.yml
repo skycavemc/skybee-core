@@ -14,5 +14,5 @@ commands:
 #    description: stats command
   wiki:
     description: wiki command
-  showarmor:
-    permission: skybee.command.showarmor
+#  showarmor:
+#    permission: skybee.command.showarmor

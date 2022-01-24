@@ -16,26 +16,18 @@ class InventoryClickListener : Listener {
 
     @EventHandler
     fun onInventoryClick(event: InventoryClickEvent) {
-
         val player = event.whoClicked as Player
         if (event.clickedInventory!!.type == InventoryType.ANVIL) {
             handleAnvilRename(event, player)
             return
         }
 
-        if (!player.hasPermission("skybee.command.showarmor")) {
-            event.isCancelled = true
-            return
-        }
-        if (event.currentItem == null) {
-            return
-        }
-        val title = player.openInventory.title
-        if (!title.startsWith("§8Rüstung von ")) {
-            return
-        }
-        if (event.action == InventoryAction.MOVE_TO_OTHER_INVENTORY && event.clickedInventory != player.inventory) {
-            event.isCancelled = true
+        /*val title = player.openInventory.title
+        if (!player.hasPermission("skybee.command.showarmor") ||
+            event.currentItem == null ||
+            !title.startsWith("§8Rüstung von ") ||
+            event.action != InventoryAction.PICKUP_ALL
+        ) {
             return
         }
 
@@ -57,6 +49,8 @@ class InventoryClickListener : Listener {
                 other.inventory.setItemInOffHand(ItemStack(Material.AIR, 0))
             }
         }
+        player.inventory.addItem(event.currentItem)
+        player.setItemOnCursor(null)*/
     }
 
     private fun handleAnvilRename(event: InventoryClickEvent, player: Player) {

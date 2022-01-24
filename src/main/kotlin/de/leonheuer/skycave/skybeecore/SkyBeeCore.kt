@@ -63,7 +63,7 @@ class SkyBeeCore: JavaPlugin() {
 
         getCommand("stats")!!.setExecutor(StatsCommand())*/
         getCommand("wiki")!!.setExecutor(WikiCommand())
-        getCommand("showarmor")!!.setExecutor(ShowArmorCommand(this))
+        //getCommand("showarmor")!!.setExecutor(ShowArmorCommand(this))
     }
 
     /*override fun onDisable() {
