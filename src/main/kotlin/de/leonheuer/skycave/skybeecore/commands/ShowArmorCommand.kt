@@ -24,7 +24,7 @@ class ShowArmorCommand(private val main: SkyBeeCore): CommandExecutor {
             sender.sendMessage(Message.UNKNOWN_PLAYER.getString().get())
             return true
         }
-        val armorContents = Bukkit.createInventory(null, 9, "§8Rüstung von ${args[1]}")
+        val armorContents = Bukkit.createInventory(null, 9, "§8Rüstung von ${args[0]}")
         armorContents.setItem(0, other.inventory.helmet)
         armorContents.setItem(1, other.inventory.chestplate)
         armorContents.setItem(2, other.inventory.leggings)
