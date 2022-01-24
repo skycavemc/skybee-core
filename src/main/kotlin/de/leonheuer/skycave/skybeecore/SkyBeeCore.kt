@@ -1,5 +1,6 @@
 package de.leonheuer.skycave.skybeecore
 
+import de.leonheuer.skycave.skybeecore.commands.ShowArmorCommand
 import de.leonheuer.skycave.skybeecore.commands.StatsCommand
 import de.leonheuer.skycave.skybeecore.commands.WikiCommand
 import de.leonheuer.skycave.skybeecore.listener.*
@@ -62,6 +63,7 @@ class SkyBeeCore: JavaPlugin() {
 
         getCommand("stats")!!.setExecutor(StatsCommand())*/
         getCommand("wiki")!!.setExecutor(WikiCommand())
+        getCommand("showarmor")!!.setExecutor(ShowArmorCommand(this))
     }
 
     /*override fun onDisable() {
