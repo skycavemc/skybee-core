@@ -1,5 +1,6 @@
 package de.leonheuer.skycave.skybeecore.listener
 
+import de.leonheuer.skycave.skybeecore.enums.Message
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -54,6 +55,13 @@ class InventoryClickListener : Listener {
     }
 
     private fun handleAnvilRename(event: InventoryClickEvent, player: Player) {
+        if (event.currentItem!!.type == Material.SPAWNER) {
+            if (!player.hasPermission("essentials.bypass.spawner.rename")) {
+                event.isCancelled = true
+                player.sendMessage(Message.SPAWNER_RENAME.getString().get())
+                return
+            }
+        }
         if (!player.hasPermission("essentials.anvil.color")) {
             return
         }

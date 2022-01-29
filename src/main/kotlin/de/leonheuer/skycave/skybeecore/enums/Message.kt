@@ -38,6 +38,9 @@ enum class Message(private val message: String) {
     // stats command messages
     STATS_LINE("&a%property&8: &7%value"),
     STATS_LINE_TEAM("&c%property&8: &7%value"),
+
+    // general block messages
+    SPAWNER_RENAME("&cDu darfst keine Spawner umbenennen."),
     ;
 
     fun getString(): FormattableString {
