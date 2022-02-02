@@ -17,7 +17,10 @@ class InventoryClickListener : Listener {
 
     @EventHandler
     fun onInventoryClick(event: InventoryClickEvent) {
-        val player = event.whoClicked as Player
+        val player = event.whoClicked
+        if (player !is Player) {
+            return
+        }
         if (event.clickedInventory!!.type == InventoryType.ANVIL) {
             handleAnvilRename(event, player)
             return
