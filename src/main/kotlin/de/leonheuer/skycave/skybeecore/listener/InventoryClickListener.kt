@@ -1,17 +1,14 @@
 package de.leonheuer.skycave.skybeecore.listener
 
 import de.leonheuer.skycave.skybeecore.enums.Message
-import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
-import org.bukkit.event.inventory.InventoryAction
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.AnvilInventory
-import org.bukkit.inventory.ItemStack
 
 class InventoryClickListener : Listener {
 
@@ -21,7 +18,8 @@ class InventoryClickListener : Listener {
         if (player !is Player) {
             return
         }
-        if (event.clickedInventory!!.type == InventoryType.ANVIL) {
+        val inv = event.clickedInventory ?: return
+        if (inv.type == InventoryType.ANVIL) {
             handleAnvilRename(event, player)
             return
         }

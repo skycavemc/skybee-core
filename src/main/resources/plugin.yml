@@ -1,13 +1,9 @@
 name: SkyBeeCore
-version: pre-1.0.1
+version: 1.0.7-SNAPSHOT
 main: de.leonheuer.skycave.skybeecore.SkyBeeCore
 author: Hakuyamu
-api-version: 1.16
-
-depend:
-  - Skript
-  - Vault
-  - LuckPerms
+api-version: 1.18
+depend: [ Skript, Vault, LuckPerms ]
 
 commands:
 #  stats:
