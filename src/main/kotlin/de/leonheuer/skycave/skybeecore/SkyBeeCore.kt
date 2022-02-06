@@ -1,10 +1,9 @@
 package de.leonheuer.skycave.skybeecore
 
+import de.leonheuer.skycave.skybeecore.commands.BackCommand
 import de.leonheuer.skycave.skybeecore.commands.WikiCommand
 import de.leonheuer.skycave.skybeecore.listener.inventory.InventoryClick
-import de.leonheuer.skycave.skybeecore.listener.player.PlayerCommand
-import de.leonheuer.skycave.skybeecore.listener.player.PlayerJoin
-import de.leonheuer.skycave.skybeecore.listener.player.PlayerLeave
+import de.leonheuer.skycave.skybeecore.listener.player.*
 import de.leonheuer.skycave.skybeecore.manager.DataManager
 import de.leonheuer.skycave.skybeecore.manager.HologramManager
 import de.leonheuer.skycave.skybeecore.manager.PlayerManager
@@ -13,6 +12,7 @@ import net.luckperms.api.LuckPerms
 import net.milkbowl.vault.chat.Chat
 import net.milkbowl.vault.economy.Economy
 import org.bukkit.Bukkit
+import org.bukkit.command.CommandExecutor
 import org.bukkit.plugin.java.JavaPlugin
 
 class SkyBeeCore: JavaPlugin() {
@@ -56,11 +56,23 @@ class SkyBeeCore: JavaPlugin() {
         pm.registerEvents(PlayerJoin(this), this)
         pm.registerEvents(PlayerLeave(this), this)
         pm.registerEvents(InventoryClick(), this)
+        pm.registerEvents(PlayerMove(this), this)
+        pm.registerEvents(PlayerTeleport(this), this)
         /*Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord")
 
         getCommand("stats")!!.setExecutor(StatsCommand())*/
-        getCommand("wiki")!!.setExecutor(WikiCommand())
+        registerCommand("wiki", WikiCommand())
+        registerCommand("back", BackCommand(this))
         //getCommand("showarmor")!!.setExecutor(ShowArmorCommand(this))
+    }
+
+    private fun registerCommand(command: String, executor: CommandExecutor) {
+        val cmd = getCommand(command)
+        if (cmd == null) {
+            logger.severe("No entry for command $command found in the plugin.yml.")
+            return
+        }
+        cmd.setExecutor(executor)
     }
 
     /*override fun onDisable() {

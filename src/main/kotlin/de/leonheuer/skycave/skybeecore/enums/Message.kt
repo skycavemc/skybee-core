@@ -41,6 +41,10 @@ enum class Message(private val message: String) {
 
     // general block messages
     SPAWNER_RENAME("&cDu darfst keine Spawner umbenennen."),
+
+    // back command
+    COMMAND_BACK_SUCCESS("&7Du hast dich zu deiner letzten Position teleportiert."),
+    COMMAND_BACK_ERROR("&cDu hast keine letzte Position."),
     ;
 
     fun getString(): FormattableString {
