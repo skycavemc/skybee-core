@@ -38,32 +38,32 @@ class SkyBeeCore: JavaPlugin() {
     @Suppress("Deprecation")
     override fun onEnable() {
         hologramManager = HologramManager(this)
-        /*playerManager = PlayerManager()
-        dataManager = DataManager()*/
+        playerManager = PlayerManager()
         econ = server.servicesManager.getRegistration(Economy::class.java)!!.provider
         luckPerms = server.servicesManager.getRegistration(LuckPerms::class.java)!!.provider
-        /*chat = server.servicesManager.getRegistration(Chat::class.java)!!.provider*/
+        /*dataManager = DataManager()
+        chat = server.servicesManager.getRegistration(Chat::class.java)!!.provider*/
 
         Bukkit.getScheduler().runTaskTimer(this, Runnable{ Bukkit.getOnlinePlayers().forEach(DisplayUtil::updateScoreBoard) }, 20L, 20L)
         Bukkit.getScheduler().runTaskTimer(this, Runnable{ Bukkit.getOnlinePlayers().forEach(DisplayUtil::setTabList) }, 0L, 30L)
         //Bukkit.getScheduler().runTaskTimerAsynchronously(this, Runnable{ TwitchUtil.setLiveSuffix("caveclown", "caveclown") }, 0L, 200L)
 
         val pm = Bukkit.getPluginManager()
-        /*pm.registerEvents(ChatListener(this), this)
-        pm.registerEvents(CustomDropListener(this), this)
-        pm.registerEvents(PlayerDeathListener(this), this)*/
         pm.registerEvents(PlayerCommand(this), this)
         pm.registerEvents(PlayerJoin(this), this)
         pm.registerEvents(PlayerLeave(this), this)
         pm.registerEvents(InventoryClick(), this)
         pm.registerEvents(PlayerMove(this), this)
         pm.registerEvents(PlayerTeleport(this), this)
-        /*Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord")
+        /*pm.registerEvents(ChatListener(this), this)
+        pm.registerEvents(CustomDropListener(this), this)
+        pm.registerEvents(PlayerDeathListener(this), this)
+        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord")*/
 
-        getCommand("stats")!!.setExecutor(StatsCommand())*/
         registerCommand("wiki", WikiCommand())
         registerCommand("back", BackCommand(this))
-        //getCommand("showarmor")!!.setExecutor(ShowArmorCommand(this))
+        /*getCommand("stats")!!.setExecutor(StatsCommand())
+        getCommand("showarmor")!!.setExecutor(ShowArmorCommand(this))*/
     }
 
     private fun registerCommand(command: String, executor: CommandExecutor) {

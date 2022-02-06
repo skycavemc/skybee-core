@@ -6,9 +6,11 @@ api-version: 1.18
 depend: [ Skript, Vault, LuckPerms ]
 
 commands:
-#  stats:
-#    description: stats command
   wiki:
     description: wiki command
+  back:
+    description: back command
+#  stats:
+#    description: stats command
 #  showarmor:
 #    permission: skybee.command.showarmor

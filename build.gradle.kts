@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "de.leonheuer.skycave"
-version = "1.0.7-SNAPSHOT"
+version = "1.1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -32,7 +32,7 @@ tasks {
     }
 
     named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
-        archiveBaseName.set(project.name)
+        archiveFileName.set("${project.name}-${project.version}.jar")
         mergeServiceFiles()
         manifest {
             attributes(mapOf("Main-Class" to "de.leonheuer.skycave.skybeecore.SkyBeeCore"))
