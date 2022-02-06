@@ -1,17 +1,14 @@
-package de.leonheuer.skycave.skybeecore.listener
+package de.leonheuer.skycave.skybeecore.listener.player
 
-import com.google.common.io.ByteStreams
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.util.DisplayUtil
 import org.bukkit.Bukkit
-import org.bukkit.ChatColor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerKickEvent
 import org.bukkit.event.player.PlayerQuitEvent
-import java.time.LocalDateTime
 
-class PlayerLeaveListener(private val main: SkyBeeCore): Listener {
+class PlayerLeave(private val main: SkyBeeCore): Listener {
 
     @Suppress("Deprecation")
     @EventHandler

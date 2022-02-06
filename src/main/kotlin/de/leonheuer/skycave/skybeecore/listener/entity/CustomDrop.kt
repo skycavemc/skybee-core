@@ -1,4 +1,4 @@
-package de.leonheuer.skycave.skybeecore.listener
+package de.leonheuer.skycave.skybeecore.listener.entity
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.util.CustomDropUtil
@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDeathEvent
 
-class CustomDropListener(private val main: SkyBeeCore): Listener {
+class CustomDrop(private val main: SkyBeeCore): Listener {
 
     @EventHandler
     fun onEntityDeath(event: EntityDeathEvent) {

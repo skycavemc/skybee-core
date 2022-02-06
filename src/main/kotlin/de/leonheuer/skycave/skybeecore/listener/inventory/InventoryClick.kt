@@ -1,6 +1,7 @@
-package de.leonheuer.skycave.skybeecore.listener
+package de.leonheuer.skycave.skybeecore.listener.inventory
 
 import de.leonheuer.skycave.skybeecore.enums.Message
+import net.kyori.adventure.text.Component
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -10,7 +11,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.AnvilInventory
 
-class InventoryClickListener : Listener {
+class InventoryClick : Listener {
 
     @EventHandler
     fun onInventoryClick(event: InventoryClickEvent) {
@@ -74,7 +75,7 @@ class InventoryClickListener : Listener {
         if (event.slotType == InventoryType.SlotType.RESULT) {
             val item = event.currentItem ?: return
             val meta = item.itemMeta ?: return
-            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', text))
+            meta.displayName(Component.text(ChatColor.translateAlternateColorCodes('&', text)))
             item.itemMeta = meta
         }
     }

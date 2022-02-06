@@ -1,21 +1,18 @@
 package de.leonheuer.skycave.skybeecore
 
-import de.leonheuer.skycave.skybeecore.commands.ShowArmorCommand
-import de.leonheuer.skycave.skybeecore.commands.StatsCommand
 import de.leonheuer.skycave.skybeecore.commands.WikiCommand
-import de.leonheuer.skycave.skybeecore.listener.*
+import de.leonheuer.skycave.skybeecore.listener.inventory.InventoryClick
+import de.leonheuer.skycave.skybeecore.listener.player.PlayerCommand
+import de.leonheuer.skycave.skybeecore.listener.player.PlayerJoin
+import de.leonheuer.skycave.skybeecore.listener.player.PlayerLeave
 import de.leonheuer.skycave.skybeecore.manager.DataManager
 import de.leonheuer.skycave.skybeecore.manager.HologramManager
 import de.leonheuer.skycave.skybeecore.manager.PlayerManager
 import de.leonheuer.skycave.skybeecore.util.DisplayUtil
-import de.leonheuer.skycave.skybeecore.util.LuckPermsUtil
-import de.leonheuer.skycave.skybeecore.util.TwitchUtil
 import net.luckperms.api.LuckPerms
 import net.milkbowl.vault.chat.Chat
 import net.milkbowl.vault.economy.Economy
-import net.milkbowl.vault.permission.Permission
 import org.bukkit.Bukkit
-import org.bukkit.ChatColor
 import org.bukkit.plugin.java.JavaPlugin
 
 class SkyBeeCore: JavaPlugin() {
@@ -55,10 +52,10 @@ class SkyBeeCore: JavaPlugin() {
         /*pm.registerEvents(ChatListener(this), this)
         pm.registerEvents(CustomDropListener(this), this)
         pm.registerEvents(PlayerDeathListener(this), this)*/
-        pm.registerEvents(CommandBlockerListener(this), this)
-        pm.registerEvents(PlayerJoinListener(this), this)
-        pm.registerEvents(PlayerLeaveListener(this), this)
-        pm.registerEvents(InventoryClickListener(), this)
+        pm.registerEvents(PlayerCommand(this), this)
+        pm.registerEvents(PlayerJoin(this), this)
+        pm.registerEvents(PlayerLeave(this), this)
+        pm.registerEvents(InventoryClick(), this)
         /*Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord")
 
         getCommand("stats")!!.setExecutor(StatsCommand())*/

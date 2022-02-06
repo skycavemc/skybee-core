@@ -1,4 +1,4 @@
-package de.leonheuer.skycave.skybeecore.listener
+package de.leonheuer.skycave.skybeecore.listener.player
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.enums.ChatChannel
@@ -13,7 +13,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent
 import java.time.Duration
 import java.time.LocalDateTime
 
-class ChatListener(private val main: SkyBeeCore): Listener {
+class PlayerChat(private val main: SkyBeeCore): Listener {
 
     @Suppress("Deprecation")
     @EventHandler

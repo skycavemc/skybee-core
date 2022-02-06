@@ -1,7 +1,6 @@
-package de.leonheuer.skycave.skybeecore.listener
+package de.leonheuer.skycave.skybeecore.listener.player
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
-import de.leonheuer.skycave.skybeecore.enums.Message
 import de.leonheuer.skycave.skybeecore.util.DisplayUtil
 import de.leonheuer.skycave.skybeecore.util.LuckPermsUtil
 import org.bukkit.Bukkit
@@ -9,9 +8,8 @@ import org.bukkit.Sound
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
-import java.time.LocalDateTime
 
-class PlayerJoinListener(private val main: SkyBeeCore): Listener {
+class PlayerJoin(private val main: SkyBeeCore): Listener {
 
     @Suppress("Deprecation")
     @EventHandler

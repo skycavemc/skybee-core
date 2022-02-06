@@ -1,16 +1,15 @@
-package de.leonheuer.skycave.skybeecore.listener
+package de.leonheuer.skycave.skybeecore.listener.player
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.enums.BlockedCommand
 import de.leonheuer.skycave.skybeecore.enums.Message
-import org.bukkit.Bukkit
 import org.bukkit.command.SimpleCommandMap
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerCommandPreprocessEvent
 
-class CommandBlockerListener(private val main: SkyBeeCore): Listener {
+class PlayerCommand(private val main: SkyBeeCore): Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     fun onCommand(event: PlayerCommandPreprocessEvent) {
