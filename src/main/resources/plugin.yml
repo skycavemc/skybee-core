@@ -1,5 +1,5 @@
 name: SkyBeeCore
-version: 1.0.7-SNAPSHOT
+version: 1.1.1-SNAPSHOT
 main: de.leonheuer.skycave.skybeecore.SkyBeeCore
 author: Hakuyamu
 api-version: 1.18
