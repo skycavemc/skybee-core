@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "de.leonheuer.skycave"
-version = "1.1.0-SNAPSHOT"
+version = "1.1.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -20,6 +20,7 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("com.github.SkriptLang:Skript:2.5.3")
     compileOnly("net.luckperms:api:5.3")
+    implementation("com.github.heuerleon:mcguiapi:v1.0.1")
 }
 
 tasks {
