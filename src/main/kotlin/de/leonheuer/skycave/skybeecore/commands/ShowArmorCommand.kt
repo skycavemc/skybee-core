@@ -2,6 +2,7 @@ package de.leonheuer.skycave.skybeecore.commands
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.enums.Message
+import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -24,7 +25,7 @@ class ShowArmorCommand(private val main: SkyBeeCore): CommandExecutor {
             sender.sendMessage(Message.UNKNOWN_PLAYER.getString().get())
             return true
         }
-        val armorContents = Bukkit.createInventory(null, 9, "§8Rüstung von ${args[0]}")
+        val armorContents = Bukkit.createInventory(null, 9, Component.text("§8Rüstung von ${args[0]}"))
         armorContents.setItem(0, other.inventory.helmet)
         armorContents.setItem(1, other.inventory.chestplate)
         armorContents.setItem(2, other.inventory.leggings)

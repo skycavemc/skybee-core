@@ -1,6 +1,7 @@
 package de.leonheuer.skycave.skybeecore.manager
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
+import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Location
@@ -15,10 +16,10 @@ class HologramManager(private val main: SkyBeeCore) {
         val holo = location.world!!.spawnEntity(location, EntityType.ARMOR_STAND) as ArmorStand
         holo.setGravity(false)
         holo.canPickupItems = false
-        holo.customName = ChatColor.translateAlternateColorCodes('&', text)
+        holo.customName(Component.text(ChatColor.translateAlternateColorCodes('&', text)))
         holo.isCustomNameVisible = true
         holo.isVisible = false
-        Bukkit.getScheduler().scheduleSyncDelayedTask(main, { holo.remove() }, ticks)
+        Bukkit.getScheduler().runTaskLater(main, Runnable { holo.remove() }, ticks)
     }
 
 }
