@@ -2,6 +2,7 @@ package de.leonheuer.skycave.skybeecore.util
 
 import ch.njol.skript.variables.Variables
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
+import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
@@ -15,7 +16,7 @@ object DisplayUtil {
 
     @Suppress("Deprecation")
     fun setScoreBoard(player: Player) {
-        val board = Bukkit.getScoreboardManager()!!.newScoreboard
+        val board = Bukkit.getScoreboardManager().newScoreboard
         val obj = board.registerNewObjective("ScoreBoard", "dummy", "§f §r §f §r §e§lSky§6§lBee §r §f §r ")
         obj.displaySlot = DisplaySlot.SIDEBAR
 
@@ -107,17 +108,19 @@ object DisplayUtil {
         return pollen.toString()
     }
 
-    @Suppress("Deprecation")
     fun setTabList(player: Player) {
-        changedTabList = if (changedTabList) {
-            player.setPlayerListHeaderFooter("§f§lSky§3§lCave§b§l.de\n §8» §fDein §bSkyBlock §eNetzwerk! §8« \n",
-                "\n§7✦ §eJoine unserem /discord!§r §7✦")
-            false
+        if (changedTabList) {
+            player.sendPlayerListHeaderAndFooter(
+                Component.text("§f§lSky§3§lCave§b§l.de\n §8» §fDein §bSkyBlock §eNetzwerk! §8« \n"),
+                Component.text("\n§7✦ §eJoine unserem /discord!§r §7✦")
+            )
         } else {
-            player.setPlayerListHeaderFooter("§f§lSky§3§lCave§b§l.de\n §8» §7Dein §9SkyBlock §6Netzwerk! §8« \n",
-                "\n§7✦ §6Joine unserem /discord!§r §7✦")
-            true
+            player.sendPlayerListHeaderAndFooter(
+                Component.text("§f§lSky§3§lCave§b§l.de\n §8» §7Dein §9SkyBlock §6Netzwerk! §8« \n"),
+                Component.text("\n§7✦ §6Joine unserem /discord!§r §7✦")
+            )
         }
+        changedTabList = !changedTabList
     }
 
 }

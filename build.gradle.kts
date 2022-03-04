@@ -20,7 +20,7 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("com.github.SkriptLang:Skript:2.5.3")
     compileOnly("net.luckperms:api:5.3")
-    implementation("com.github.heuerleon:mcguiapi:v1.0.1")
+    implementation("com.github.heuerleon:mcguiapi:v1.3.1")
 }
 
 tasks {
