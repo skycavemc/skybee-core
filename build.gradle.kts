@@ -18,7 +18,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("com.github.SkriptLang:Skript:2.5.3")
-    compileOnly("net.luckperms:api:5.3")
+    compileOnly("net.luckperms:api:5.4")
     implementation("com.github.heuerleon:mcguiapi:v1.3.3")
 }
 
