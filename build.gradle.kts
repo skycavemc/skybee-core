@@ -19,7 +19,7 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("com.github.SkriptLang:Skript:2.5.3")
     compileOnly("net.luckperms:api:5.4")
-    compileOnly("org.mongodb:mongodb-driver-sync:4.5.0")
+    implementation("org.mongodb:mongodb-driver-sync:4.5.0")
     implementation("com.github.heuerleon:mcguiapi:v1.3.3")
 }
 
@@ -37,12 +37,6 @@ tasks {
         mergeServiceFiles()
         manifest {
             attributes(mapOf("Main-Class" to "de.leonheuer.skycave.skybeecore.SkyBeeCore"))
-        }
-        dependencies {
-            exclude(dependency("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT"))
-            exclude(dependency("com.github.MilkBowl:VaultAPI:1.7"))
-            exclude(dependency("net.luckperms:api:5.3"))
-            exclude(dependency("com.github.SkriptLang:Skript:2.5.3"))
         }
     }
 
