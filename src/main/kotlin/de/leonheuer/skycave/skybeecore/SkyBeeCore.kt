@@ -44,8 +44,8 @@ class SkyBeeCore: JavaPlugin() {
         /*dataManager = DataManager()
         chat = server.servicesManager.getRegistration(Chat::class.java)!!.provider*/
 
-        Bukkit.getScheduler().runTaskTimer(this, Runnable{ Bukkit.getOnlinePlayers().forEach(DisplayUtil::updateScoreBoard) }, 20L, 20L)
-        Bukkit.getScheduler().runTaskTimer(this, Runnable{ Bukkit.getOnlinePlayers().forEach(DisplayUtil::setTabList) }, 0L, 30L)
+        Bukkit.getScheduler().runTaskTimer(this, Runnable{ Bukkit.getOnlinePlayers().forEach(DisplayUtil::updateScoreBoard) }, 20L, 40L)
+        Bukkit.getScheduler().runTaskTimer(this, Runnable{ DisplayUtil.setTabList() }, 0L, 30L)
         //Bukkit.getScheduler().runTaskTimerAsynchronously(this, Runnable{ TwitchUtil.setLiveSuffix("caveclown", "caveclown") }, 0L, 200L)
 
         val pm = Bukkit.getPluginManager()

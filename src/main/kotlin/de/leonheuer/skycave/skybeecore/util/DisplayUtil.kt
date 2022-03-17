@@ -3,6 +3,7 @@ package de.leonheuer.skycave.skybeecore.util
 import ch.njol.skript.variables.Variables
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.TextComponent
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
@@ -108,17 +109,18 @@ object DisplayUtil {
         return pollen.toString()
     }
 
-    fun setTabList(player: Player) {
+    fun setTabList() {
+        val header: TextComponent
+        val footer: TextComponent
         if (changedTabList) {
-            player.sendPlayerListHeaderAndFooter(
-                Component.text("§f§lSky§3§lCave§b§l.de\n §8» §fDein §bSkyBlock §eNetzwerk! §8« \n"),
-                Component.text("\n§7✦ §eJoine unserem /discord!§r §7✦")
-            )
+            header = Component.text("§f§lSky§3§lCave§b§l.de\n §8» §fDein §bSkyBlock §eNetzwerk! §8« \n")
+            footer = Component.text("\n§7✦ §eJoine unserem /discord!§r §7✦")
         } else {
-            player.sendPlayerListHeaderAndFooter(
-                Component.text("§f§lSky§3§lCave§b§l.de\n §8» §7Dein §9SkyBlock §6Netzwerk! §8« \n"),
-                Component.text("\n§7✦ §6Joine unserem /discord!§r §7✦")
-            )
+            header = Component.text("§f§lSky§3§lCave§b§l.de\n §8» §7Dein §9SkyBlock §6Netzwerk! §8« \n")
+            footer = Component.text("\n§7✦ §6Joine unserem /discord!§r §7✦")
+        }
+        for (player in main.server.onlinePlayers) {
+            player.sendPlayerListHeaderAndFooter(header, footer)
         }
         changedTabList = !changedTabList
     }
