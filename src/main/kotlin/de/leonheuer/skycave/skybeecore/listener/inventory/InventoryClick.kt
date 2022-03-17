@@ -24,59 +24,27 @@ class InventoryClick : Listener {
             handleAnvilRename(event, player)
             return
         }
-
-        /*val title = player.openInventory.title
-        if (!player.hasPermission("skybee.command.showarmor") ||
-            event.currentItem == null ||
-            !title.startsWith("§8Rüstung von ") ||
-            event.action != InventoryAction.PICKUP_ALL
-        ) {
-            return
-        }
-
-        val other = Bukkit.getPlayer(title.substring(12)) ?: return
-        when (event.rawSlot) {
-            0 -> {
-                other.inventory.helmet = ItemStack(Material.AIR, 0)
-            }
-            1 -> {
-                other.inventory.chestplate = ItemStack(Material.AIR, 0)
-            }
-            2 -> {
-                other.inventory.leggings = ItemStack(Material.AIR, 0)
-            }
-            3 -> {
-                other.inventory.boots = ItemStack(Material.AIR, 0)
-            }
-            4 -> {
-                other.inventory.setItemInOffHand(ItemStack(Material.AIR, 0))
-            }
-        }
-        player.inventory.addItem(event.currentItem)
-        player.setItemOnCursor(null)*/
     }
 
     private fun handleAnvilRename(event: InventoryClickEvent, player: Player) {
-        if (event.currentItem!!.type == Material.SPAWNER) {
+        val item = event.currentItem ?: return
+        val inv = event.clickedInventory ?: return
+        if (inv !is AnvilInventory) {
+            return
+        }
+        if (!player.hasPermission("essentials.anvil.color")) {
+            return
+        }
+        if (item.type == Material.SPAWNER) {
             if (!player.hasPermission("essentials.bypass.spawner.rename")) {
                 event.isCancelled = true
                 player.sendMessage(Message.SPAWNER_RENAME.getString().get())
                 return
             }
         }
-        if (!player.hasPermission("essentials.anvil.color")) {
-            return
-        }
-        val inv = event.clickedInventory ?: return
-        if (inv !is AnvilInventory) {
-            return
-        }
         val text = inv.renameText ?: return
         if (event.slotType == InventoryType.SlotType.RESULT) {
-            val item = event.currentItem ?: return
-            val meta = item.itemMeta ?: return
-            meta.displayName(Component.text(ChatColor.translateAlternateColorCodes('&', text)))
-            item.itemMeta = meta
+            item.editMeta { it.displayName(Component.text(ChatColor.translateAlternateColorCodes('&', text))) }
         }
     }
 

@@ -1,7 +1,8 @@
 package de.leonheuer.skycave.skybeecore.enums
 
-import de.leonheuer.skycave.skybeecore.model.FormattableString
+import de.leonheuer.skycave.skybeecore.model.ColoredStringBuilder
 
+@Suppress("unused")
 enum class Message(private val message: String) {
 
     UNKNOWN_PLAYER("&cDer Spieler %player ist nicht bekannt."),
@@ -15,8 +16,6 @@ enum class Message(private val message: String) {
     WIKI_RAW("&aMinecraft-Wiki: &7https://minecraft.fandom.com/de/wiki/"),
     WIKI_SEARCH("&aSuchergebnisse für '%search' im Minecraft-Wiki: &7https://minecraft.fandom.com/de/wiki/?search=%wiki"),
 
-    SHOWARMOR_SYNTAX("&e/showarmor <Spieler>"),
-
     // command blocker messages
     COMMAND_BLOCKED("&cDieser Befehl wurde blockiert."),
 
@@ -28,17 +27,6 @@ enum class Message(private val message: String) {
     HELP_MSG("&a/msg <spieler> <nachricht> &8» &7Versendet eine private Nachricht."),
     HELP_WIKI("&eFür eine ausführliche Befehlsübersicht siehe: &b&nhttps://skycave.gitbook.io/skyblock/"),
 
-    // captcha messages
-    CAPTCHA_NOT_DONE("&cDu hast die Bestätigung noch nicht vollendet. Dein Bestätigungs-Code lautet &b&l%captcha\n" +
-            "&7Gib den Code im Chat ein und bestätige mit Enter:"),
-
-    // chat messages
-    CHAT_COOLDOWN("&cDu musst noch %until Minuten warten, bis du den Channel %channel wieder nutzen darfst."),
-
-    // stats command messages
-    STATS_LINE("&a%property&8: &7%value"),
-    STATS_LINE_TEAM("&c%property&8: &7%value"),
-
     // general block messages
     SPAWNER_RENAME("&cDu darfst keine Spawner umbenennen."),
 
@@ -47,8 +35,8 @@ enum class Message(private val message: String) {
     COMMAND_BACK_ERROR("&cDu hast keine letzte Position."),
     ;
 
-    fun getString(): FormattableString {
-        return FormattableString(message)
+    fun getString(): ColoredStringBuilder {
+        return ColoredStringBuilder(message)
     }
 
 }

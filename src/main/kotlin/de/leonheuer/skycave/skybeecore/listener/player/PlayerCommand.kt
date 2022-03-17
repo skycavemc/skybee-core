@@ -3,7 +3,6 @@ package de.leonheuer.skycave.skybeecore.listener.player
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import de.leonheuer.skycave.skybeecore.enums.BlockedCommand
 import de.leonheuer.skycave.skybeecore.enums.Message
-import org.bukkit.command.SimpleCommandMap
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
@@ -15,16 +14,6 @@ class PlayerCommand(private val main: SkyBeeCore): Listener {
     fun onCommand(event: PlayerCommandPreprocessEvent) {
         val player = event.player
         val cmd = event.message.split(" ")[0]
-        val field = main.server::class.java.getDeclaredField("commandMap")
-        field.isAccessible = true
-        val cmdMap = field.get(main.server) as SimpleCommandMap
-
-        /*if (!main.dataManager.getRegisteredUser(player).hasCompletedCaptcha) {
-            event.isCancelled = true
-            val captcha = main.playerManager.getRegisteredUser(player).captcha
-            player.sendMessage(Message.CAPTCHA_NOT_DONE.getString().replace("%captcha", captcha!!).get())
-            return
-        }*/
 
         if (cmd.lowercase().startsWith("/help")) {
             event.isCancelled = true
@@ -42,7 +31,7 @@ class PlayerCommand(private val main: SkyBeeCore): Listener {
         if (player.hasPermission("skybee.bypass.blockedcommands")) {
             return
         }
-        if (cmdMap.getCommand(cmd.replaceFirst("/", "")) == null) {
+        if (main.server.commandMap.getCommand(cmd.replaceFirst("/", "")) == null) {
             return
         }
 
