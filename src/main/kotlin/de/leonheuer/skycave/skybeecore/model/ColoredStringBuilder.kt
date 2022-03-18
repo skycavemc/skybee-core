@@ -16,7 +16,7 @@ class ColoredStringBuilder(private var result: String) {
         return this
     }
 
-    fun get(prefix: Boolean = false, formatted: Boolean = false): String {
+    fun get(prefix: Boolean = true, formatted: Boolean = true): String {
         if (prefix) {
             result = SkyBeeCore.PREFIX + result
         }

@@ -6,12 +6,13 @@ plugins {
 }
 
 group = "de.leonheuer.skycave"
-version = "1.2.0"
+version = "1.3.0"
 
 repositories {
     mavenCentral()
     maven { url = uri("https://papermc.io/repo/repository/maven-public/") }
     maven { url = uri("https://jitpack.io") }
+    maven { url = uri("https://repo.onarandombox.com/content/groups/public/") }
 }
 
 dependencies {
@@ -19,6 +20,7 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("com.github.SkriptLang:Skript:2.5.3")
     compileOnly("net.luckperms:api:5.4")
+    compileOnly("com.onarandombox.multiversecore:Multiverse-Core:4.3.1")
     implementation("org.mongodb:mongodb-driver-sync:4.5.0")
     implementation("com.github.heuerleon:mcguiapi:v1.3.3")
 }

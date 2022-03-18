@@ -28,7 +28,7 @@ class PlayerCommand(private val main: SkyBeeCore): Listener {
             return
         }
 
-        if (player.hasPermission("skybee.bypass.blockedcommands")) {
+        if (player.hasPermission("skybee.core.bypass.commands")) {
             return
         }
         if (main.server.commandMap.getCommand(cmd.replaceFirst("/", "")) == null) {

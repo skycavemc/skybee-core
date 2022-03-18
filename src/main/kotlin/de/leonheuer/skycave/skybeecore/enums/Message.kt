@@ -33,6 +33,24 @@ enum class Message(private val message: String) {
     // back command
     COMMAND_BACK_SUCCESS("&7Du hast dich zu deiner letzten Position teleportiert."),
     COMMAND_BACK_ERROR("&cDu hast keine letzte Position."),
+
+    // farm world
+    FORBIDDEN_AREA("&cDu darfst dich hier nicht aufhalten!"),
+    FORBIDDEN_BLOCK("&cDu darfst diesen Block nicht in einer Farmwelt platzieren."),
+    FORBIDDEN_FLIGHT("&cIn Farmwelten sind Elytren deaktiviert."),
+    DIMENSION_LOGIN("&cDu wurdest zum Spawn teleportiert, da du dich in einer Farmwelt ausgeloggt hast."),
+    DIMENSION_LOCKED("&cDiese Farmwelt ist momentan gesperrt."),
+    FARM_WORLD_UNKNOWN("&cDiese Farmwelt ist nicht bekannt."),
+
+    // portals command
+    PORTALS_LOCK("&7Du hast die Farmwelt &c%world gesperrt."),
+    PORTALS_LOCK_HELP("&b/portals lock <farmwelt>\n&8» &7Sperrt die gegebene Farmwelt"),
+    PORTALS_UNLOCK("&7Du hast die Farmwelt &a%world entsperrt."),
+    PORTALS_UNLOCK_HELP("&b/portals unlock <farmwelt>\n&8» &7Entsperrt die gegebene Farmwelt"),
+    PORTALS_SET_SPAWN("&7Du hast den Spawnpunkt für die Farmwelt &e%world verschoben."),
+    PORTALS_SET_SPAWN_HELP("&b/portals setspawn <farmwelt>\n&8» &7Setzt den Spawnpunkt einer Farmwelt"),
+    PORTALS_TP("&7Du hast dich in die Farmwelt &e%world teleportiert."),
+    PORTALS_TP_HELP("&b/portals tp <farmwelt>\n&8» &7Teleportiert dich zu einer Farmwelt")
     ;
 
     fun getString(): ColoredStringBuilder {

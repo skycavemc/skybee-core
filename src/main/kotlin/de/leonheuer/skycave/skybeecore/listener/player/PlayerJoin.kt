@@ -1,7 +1,9 @@
 package de.leonheuer.skycave.skybeecore.listener.player
 
+import de.leonheuer.skycave.skybeecore.enums.Message
 import de.leonheuer.skycave.skybeecore.util.DisplayUtil
 import de.leonheuer.skycave.skybeecore.util.LuckPermsUtil
+import de.leonheuer.skycave.skybeecore.util.PortalUtils
 import org.bukkit.Bukkit
 import org.bukkit.Sound
 import org.bukkit.event.EventHandler
@@ -26,6 +28,14 @@ class PlayerJoin : Listener {
             if (it != player) {
                 DisplayUtil.addPlayerToScoreboard(it, player)
             }
+        }
+
+        if (player.hasPermission("skybee.portals.bypass.farmworlds")) {
+            return
+        }
+        if (PortalUtils.isInFarmWorld(player)) {
+            player.sendMessage(Message.DIMENSION_LOGIN.getString().get())
+            PortalUtils.teleportToMVWorld(player, "Builder")
         }
     }
 
