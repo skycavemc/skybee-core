@@ -16,14 +16,14 @@ enum class FarmWorld(
         "nether",
         ColoredStringBuilder("&8» &4Der Nether &8«"),
         ColoredStringBuilder("&eFarmwelt"),
-        Sound.MUSIC_NETHER_BASALT_DELTAS,
+        Sound.AMBIENT_NETHER_WASTES_MOOD,
         Material.NETHER_PORTAL
     ),
     END(
         "end",
         ColoredStringBuilder("&8» &dDas End &8«"),
         ColoredStringBuilder("&6Halloween Event &e%year"),
-        Sound.MUSIC_END,
+        Sound.BLOCK_END_PORTAL_SPAWN,
         Material.END_PORTAL
     );
 
