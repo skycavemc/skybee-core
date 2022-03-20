@@ -18,6 +18,7 @@ enum class Message(private val message: String) {
 
     // command blocker messages
     COMMAND_BLOCKED("&cDieser Befehl wurde blockiert."),
+    COMMAND_CORRECTION("&eDu hast %input eingegeben, aber trotzdem wurde %result ausgeführt."),
 
     // help command messages
     HELP_HEADER("&eDie wichtigsten Grundbefehle:"),

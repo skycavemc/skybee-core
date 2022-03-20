@@ -92,6 +92,7 @@ class SkyBeeCore: JavaPlugin() {
         pm.registerEvents(PortalCreate(), this)
         pm.registerEvents(BlockPlace(), this)
         pm.registerEvents(PlayerChangedWorld(), this)
+        pm.registerEvents(PlayerChat(this), this)
 
         // commands
         registerCommand("wiki", WikiCommand())
