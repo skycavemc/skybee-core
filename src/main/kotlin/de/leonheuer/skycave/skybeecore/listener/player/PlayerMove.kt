@@ -36,7 +36,6 @@ class PlayerMove(private val main: SkyBeeCore): Listener {
             player.location.distance(to) >= 75
         ) {
             pm.fromLocation[player] = to
-            pm.toLocation[player] = pm.fromLocation[player] ?: return
         }
     }
 

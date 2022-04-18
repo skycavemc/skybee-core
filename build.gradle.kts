@@ -21,7 +21,7 @@ dependencies {
     compileOnly("com.github.SkriptLang:Skript:2.5.3")
     compileOnly("net.luckperms:api:5.4")
     compileOnly("com.onarandombox.multiversecore:Multiverse-Core:4.3.1")
-    implementation("org.mongodb:mongodb-driver-sync:4.5.0")
+    implementation("org.mongodb:mongodb-driver-sync:4.5.1")
     implementation("com.github.heuerleon:mcguiapi:v1.3.3")
 }
 
