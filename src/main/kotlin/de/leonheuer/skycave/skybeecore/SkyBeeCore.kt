@@ -24,6 +24,7 @@ class SkyBeeCore: JavaPlugin() {
     companion object {
         const val PERMISSION_GROUPS_MAX_WEIGHT = 150
         const val PREFIX = "&e&l| &eSky&6Bee &8» "
+        const val MAX_PLAYERS = 100
     }
 
     lateinit var playerManager: PlayerManager

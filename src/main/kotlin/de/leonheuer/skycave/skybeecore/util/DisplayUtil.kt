@@ -42,7 +42,7 @@ object DisplayUtil {
 
         val online = board.registerNewTeam("online")
         online.addEntry("§5")
-        online.prefix = "§r §7 §r §f${Bukkit.getOnlinePlayers().size} §7/ §f50"
+        online.prefix = "§r §7 §r §f${Bukkit.getOnlinePlayers().size} §7/ §f" + SkyBeeCore.MAX_PLAYERS
 
         obj.getScore("§0").score = 9
         obj.getScore("§7§l▸ §6Geld:").score = 8
@@ -74,7 +74,7 @@ object DisplayUtil {
 
         val online = board.getTeam("online")
         if (online != null) {
-            online.prefix = "§r §7 §r §f${Bukkit.getOnlinePlayers().size} §7/ §f50"
+            online.prefix = "§r §7 §r §f${Bukkit.getOnlinePlayers().size} §7/ §f" + SkyBeeCore.MAX_PLAYERS
         }
     }
 
