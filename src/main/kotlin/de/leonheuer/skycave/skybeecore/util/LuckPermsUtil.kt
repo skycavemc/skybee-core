@@ -2,8 +2,13 @@ package de.leonheuer.skycave.skybeecore.util
 
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import net.luckperms.api.model.group.Group
+import net.luckperms.api.node.Node
+import net.luckperms.api.node.NodeType
+import net.luckperms.api.node.types.InheritanceNode
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
+import java.time.Duration
+import java.util.stream.Collectors
 import kotlin.math.absoluteValue
 
 object LuckPermsUtil {
@@ -14,6 +19,17 @@ object LuckPermsUtil {
     fun getUserGroup(player: Player): Group? {
         val user = luckPerms.getPlayerAdapter(Player::class.java).getUser(player)
         return luckPerms.groupManager.getGroup(user.primaryGroup)
+    }
+
+    fun getUserGroupExpiry(player: Player, groupName: String): Duration? {
+        val user = luckPerms.getPlayerAdapter(Player::class.java).getUser(player)
+        val expiry = user.getNodes(NodeType.INHERITANCE).stream()
+            .filter(Node::hasExpiry)
+            .filter{ (it as InheritanceNode).groupName == groupName }
+            .map(InheritanceNode::getExpiryDuration)
+            .collect(Collectors.toList())
+        if (expiry.isEmpty()) return null
+        return expiry.first()
     }
 
     fun getGroupTabListName(group: Group): String {

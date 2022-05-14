@@ -51,7 +51,11 @@ enum class Message(private val message: String) {
     PORTALS_SET_SPAWN("&7Du hast den Spawnpunkt für die Farmwelt &e%world verschoben."),
     PORTALS_SET_SPAWN_HELP("&b/portals setspawn <farmwelt>\n&8» &7Setzt den Spawnpunkt einer Farmwelt"),
     PORTALS_TP("&7Du hast dich in die Farmwelt &e%world teleportiert."),
-    PORTALS_TP_HELP("&b/portals tp <farmwelt>\n&8» &7Teleportiert dich zu einer Farmwelt")
+    PORTALS_TP_HELP("&b/portals tp <farmwelt>\n&8» &7Teleportiert dich zu einer Farmwelt"),
+
+    // drohne command
+    DROHNE_NOT("&cDu besitzt den Rang Drohne nicht. &7Du kannst ihn dir im &e/store &7oder im &e/pshop &7kaufen."),
+    DROHNE_DURANCE("&7Du hast den Rang Drohne noch für &e%duration&7."),
     ;
 
     fun getString(): ColoredStringBuilder {

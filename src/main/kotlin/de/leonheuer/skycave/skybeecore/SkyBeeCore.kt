@@ -3,6 +3,7 @@ package de.leonheuer.skycave.skybeecore
 import com.onarandombox.MultiverseCore.MultiverseCore
 import com.onarandombox.MultiverseCore.api.MVWorldManager
 import de.leonheuer.skycave.skybeecore.commands.BackCommand
+import de.leonheuer.skycave.skybeecore.commands.DrohneCommand
 import de.leonheuer.skycave.skybeecore.commands.PortalsCommand
 import de.leonheuer.skycave.skybeecore.commands.WikiCommand
 import de.leonheuer.skycave.skybeecore.listener.block.BlockPlace
@@ -99,6 +100,7 @@ class SkyBeeCore: JavaPlugin() {
         registerCommand("wiki", WikiCommand())
         registerCommand("back", BackCommand(this))
         registerCommand("portals", PortalsCommand())
+        registerCommand("drohne", DrohneCommand())
     }
 
     private fun registerCommand(command: String, executor: CommandExecutor) {
