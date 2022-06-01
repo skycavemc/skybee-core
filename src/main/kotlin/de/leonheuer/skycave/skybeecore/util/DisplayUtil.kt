@@ -1,6 +1,6 @@
 package de.leonheuer.skycave.skybeecore.util
 
-import ch.njol.skript.variables.Variables
+import com.mongodb.client.model.Filters
 import de.leonheuer.skycave.skybeecore.SkyBeeCore
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.TextComponent
@@ -18,7 +18,7 @@ object DisplayUtil {
     @Suppress("Deprecation")
     fun setScoreBoard(player: Player) {
         val board = Bukkit.getScoreboardManager().newScoreboard
-        val obj = board.registerNewObjective("ScoreBoard", "dummy", "§f §r §f §r §e§lSky§6§lBee §r §f §r ")
+        val obj = board.registerNewObjective("ScoreBoard", "dummy", "§f §r §f §r §f§lSky§3§lCave§b§l.de §r §f §r ")
         obj.displaySlot = DisplaySlot.SIDEBAR
 
         main.luckPerms.groupManager.loadedGroups.forEach {
@@ -36,22 +36,22 @@ object DisplayUtil {
         money.addEntry("§1")
         money.prefix = "§r §7 §r §f${getFormattedMoney(player)}$"
 
-        val pollen = board.registerNewTeam("pollen")
-        pollen.addEntry("§3")
-        pollen.prefix = "§r §7 §r §f${getPollen(player)}"
+        val vc = board.registerNewTeam("vc")
+        vc.addEntry("§3")
+        vc.prefix = "§r §7 §r §f${getVoteCoins(player)}"
 
         val online = board.registerNewTeam("online")
         online.addEntry("§5")
         online.prefix = "§r §7 §r §f${Bukkit.getOnlinePlayers().size} §7/ §f" + SkyBeeCore.MAX_PLAYERS
 
         obj.getScore("§0").score = 9
-        obj.getScore("§7§l▸ §6Geld:").score = 8
+        obj.getScore("§7§l▸ §3Geld:").score = 8
         obj.getScore("§1").score = 7
         obj.getScore("§2").score = 6
-        obj.getScore("§7§l▸ §6Pollen:").score = 5
+        obj.getScore("§7§l▸ §3VoteCoins:").score = 5
         obj.getScore("§3").score = 4
         obj.getScore("§4").score = 3
-        obj.getScore("§7§l▸ §6Online:").score = 2
+        obj.getScore("§7§l▸ §3Online:").score = 2
         obj.getScore("§5").score = 1
         obj.getScore("§6").score = 0
 
@@ -67,15 +67,20 @@ object DisplayUtil {
             money.prefix = "§r §7 §r §f${getFormattedMoney(player)}$"
         }
 
-        val pollen = board.getTeam("pollen")
-        if (pollen != null) {
-            pollen.prefix = "§r §7 §r §f${getPollen(player)}"
+        val vc = board.getTeam("vc")
+        if (vc != null) {
+            vc.prefix = "§r §7 §r §f${getVoteCoins(player)}"
         }
 
         val online = board.getTeam("online")
         if (online != null) {
             online.prefix = "§r §7 §r §f${Bukkit.getOnlinePlayers().size} §7/ §f" + SkyBeeCore.MAX_PLAYERS
         }
+    }
+
+    private fun getVoteCoins(player: Player): Long {
+        val user = main.users.find(Filters.eq("uuid", player.uniqueId.toString())).first()
+        return user?.voteCoins ?: 0
     }
 
     @Suppress("Deprecation")
@@ -101,12 +106,6 @@ object DisplayUtil {
 
     private fun getFormattedMoney(player: Player): String {
         return String.format(Locale.GERMAN, "%,.2f", main.econ.getBalance(player))
-    }
-
-    private fun getPollen(player: Player): String {
-        //val user = DataUtil.getUser(player.uniqueId) ?: return "0"
-        val pollen = Variables.getVariable("pollen.${player.uniqueId}", null, false) ?: return "0"
-        return pollen.toString()
     }
 
     fun setTabList() {

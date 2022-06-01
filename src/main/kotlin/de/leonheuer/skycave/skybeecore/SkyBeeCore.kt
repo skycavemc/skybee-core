@@ -1,7 +1,13 @@
 package de.leonheuer.skycave.skybeecore
 
+import com.mongodb.ConnectionString
+import com.mongodb.MongoClientSettings
+import com.mongodb.client.MongoClient
+import com.mongodb.client.MongoClients
+import com.mongodb.client.MongoCollection
 import com.onarandombox.MultiverseCore.MultiverseCore
 import com.onarandombox.MultiverseCore.api.MVWorldManager
+import de.hakuyamu.skybee.votesystem.models.User
 import de.leonheuer.skycave.skybeecore.commands.BackCommand
 import de.leonheuer.skycave.skybeecore.commands.DrohneCommand
 import de.leonheuer.skycave.skybeecore.commands.PortalsCommand
@@ -14,6 +20,9 @@ import de.leonheuer.skycave.skybeecore.manager.PlayerManager
 import de.leonheuer.skycave.skybeecore.util.DisplayUtil
 import net.luckperms.api.LuckPerms
 import net.milkbowl.vault.economy.Economy
+import org.bson.codecs.configuration.CodecProvider
+import org.bson.codecs.configuration.CodecRegistries
+import org.bson.codecs.pojo.PojoCodecProvider
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandExecutor
 import org.bukkit.configuration.file.YamlConfiguration
@@ -24,7 +33,7 @@ class SkyBeeCore: JavaPlugin() {
 
     companion object {
         const val PERMISSION_GROUPS_MAX_WEIGHT = 150
-        const val PREFIX = "&e&l| &eSky&6Bee &8» "
+        const val PREFIX = "&b&l| &fSky&3Cave &8» "
         const val MAX_PLAYERS = 100
     }
 
@@ -37,6 +46,10 @@ class SkyBeeCore: JavaPlugin() {
     lateinit var worldManager: MVWorldManager
         private set
     lateinit var settings: YamlConfiguration
+        private set
+    lateinit var mongoClient: MongoClient
+        private set
+    lateinit var users: MongoCollection<User>
         private set
 
     @Suppress("Deprecation")
@@ -65,6 +78,19 @@ class SkyBeeCore: JavaPlugin() {
             return
         }
         worldManager = multiverse.mvWorldManager
+
+        val pojoCodecProvider: CodecProvider = PojoCodecProvider.builder().automatic(true).build()
+        val pojoCodecRegistry = CodecRegistries.fromRegistries(
+            MongoClientSettings.getDefaultCodecRegistry(),
+            CodecRegistries.fromProviders(pojoCodecProvider)
+        )
+        val clientSettings = MongoClientSettings.builder()
+            .applyConnectionString(ConnectionString("mongodb://localhost:27017"))
+            .codecRegistry(pojoCodecRegistry)
+            .build()
+        mongoClient = MongoClients.create(clientSettings)
+        val database = mongoClient.getDatabase("sb_vote_system")
+        users = database.getCollection("users", User::class.java)
 
         // configs
         if (!dataFolder.isDirectory) {

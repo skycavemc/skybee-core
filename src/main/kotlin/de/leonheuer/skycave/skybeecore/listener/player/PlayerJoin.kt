@@ -17,9 +17,9 @@ class PlayerJoin : Listener {
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val player = event.player
 
-        player.sendTitle("§8» §6Willkommen §8«", "§7auf §eSky§6Bee §71.18", 10, 40, 20)
+        player.sendTitle("§8» §3Willkommen §8«", "§7auf §fSky§3Cave §71.18", 10, 40, 20)
         player.playSound(player.location, Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.7F)
-        event.joinMessage = "§8[§6+§8] §e${player.name} §7hat den Server betreten."
+        event.joinMessage = "§8[§3+§8] §3${player.name} §7hat den Server betreten."
 
         val prefix = LuckPermsUtil.getPrefix(LuckPermsUtil.getUserGroup(player)!!)!!.replace("&", "§")
         player.setPlayerListName("$prefix §8| §7${player.name}")

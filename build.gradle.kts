@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "de.leonheuer.skycave"
-version = "1.4.0"
+version = "1.4.1"
 
 repositories {
     mavenCentral()
@@ -18,11 +18,11 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
-    compileOnly("com.github.SkriptLang:Skript:2.5.3")
     compileOnly("net.luckperms:api:5.4")
     compileOnly("com.onarandombox.multiversecore:Multiverse-Core:4.3.1")
     implementation("org.mongodb:mongodb-driver-sync:4.6.0")
-    implementation("com.github.heuerleon:mcguiapi:v1.3.3")
+    implementation("com.github.heuerleon:mcguiapi:v1.3.5")
+    implementation("com.github.skycavemc:VoteSystem:v3.2.3")
 }
 
 tasks {
