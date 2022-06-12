@@ -8,10 +8,7 @@ import com.mongodb.client.MongoCollection
 import com.onarandombox.MultiverseCore.MultiverseCore
 import com.onarandombox.MultiverseCore.api.MVWorldManager
 import de.hakuyamu.skybee.votesystem.models.User
-import de.leonheuer.skycave.skybeecore.commands.BackCommand
-import de.leonheuer.skycave.skybeecore.commands.DrohneCommand
-import de.leonheuer.skycave.skybeecore.commands.PortalsCommand
-import de.leonheuer.skycave.skybeecore.commands.WikiCommand
+import de.leonheuer.skycave.skybeecore.commands.*
 import de.leonheuer.skycave.skybeecore.listener.block.BlockPlace
 import de.leonheuer.skycave.skybeecore.listener.inventory.InventoryClick
 import de.leonheuer.skycave.skybeecore.listener.misc.PortalCreate
@@ -127,6 +124,7 @@ class SkyBeeCore: JavaPlugin() {
         registerCommand("back", BackCommand(this))
         registerCommand("portals", PortalsCommand())
         registerCommand("drohne", DrohneCommand())
+        registerCommand("fly", FlyCommand())
     }
 
     private fun registerCommand(command: String, executor: CommandExecutor) {

@@ -56,6 +56,12 @@ enum class Message(private val message: String) {
     // drohne command
     DROHNE_NOT("&cDu besitzt den Rang Drohne nicht. &7Du kannst ihn dir im &e/store &7oder im &e/pshop &7kaufen."),
     DROHNE_DURANCE("&7Du hast den Rang Drohne noch für &e%duration&7."),
+
+    // fly command
+    FLY_ACTIVATE("&aDu kannst nun fliegen."),
+    FLY_DEACTIVATE("&cDu kannst nun nicht mehr fliegen."),
+    FLY_BUY("&eDu kannst dieses Feature im /store oder im /vcshop erwerben!"),
+    FLY_WORLD("&cFliegen ist in dieser Welt deaktiviert!"),
     ;
 
     fun getString(): ColoredStringBuilder {
