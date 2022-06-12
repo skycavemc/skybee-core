@@ -22,7 +22,8 @@ object DisplayUtil {
         obj.displaySlot = DisplaySlot.SIDEBAR
 
         main.luckPerms.groupManager.loadedGroups.forEach {
-            val prefix = it.cachedData.metaData.prefix!!.replace("&", "§")
+            val prefix = it.cachedData.metaData.prefix ?: return@forEach
+            prefix.replace("&", "§")
             board.registerNewTeam(LuckPermsUtil.getGroupTabListName(it)).prefix = "$prefix §8| §7"
         }
         Bukkit.getOnlinePlayers().forEach {
@@ -88,8 +89,8 @@ object DisplayUtil {
         val board = holder.scoreboard
         val group = LuckPermsUtil.getUserGroup(newPlayer)
         if (group != null) {
-            val team = board.getTeam(LuckPermsUtil.getGroupTabListName(group))
-            team!!.addPlayer(newPlayer)
+            val team = board.getTeam(LuckPermsUtil.getGroupTabListName(group)) ?: return
+            team.addPlayer(newPlayer)
         }
     }
 
@@ -98,8 +99,8 @@ object DisplayUtil {
         val board = holder.scoreboard
         val group = LuckPermsUtil.getUserGroup(remove)
         if (group != null) {
-            val team = board.getTeam(LuckPermsUtil.getGroupTabListName(group))
-            team!!.removePlayer(remove)
+            val team = board.getTeam(LuckPermsUtil.getGroupTabListName(group)) ?: return
+            team.removePlayer(remove)
         }
 
     }
