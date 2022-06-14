@@ -21,8 +21,11 @@ class PlayerJoin : Listener {
         player.playSound(player.location, Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.7F)
         event.joinMessage = "§8[§3+§8] §3${player.name} §7hat den Server betreten."
 
-        val prefix = LuckPermsUtil.getPrefix(LuckPermsUtil.getUserGroup(player)!!)!!.replace("&", "§")
-        player.setPlayerListName("$prefix §8| §7${player.name}")
+        var prefix = LuckPermsUtil.getPrefix(player)
+        if (prefix != null) {
+            prefix = prefix.replace("&", "§")
+            player.setPlayerListName("$prefix §8| §7${player.name}")
+        }
         DisplayUtil.setScoreBoard(player)
         Bukkit.getOnlinePlayers().forEach {
             if (it != player) {

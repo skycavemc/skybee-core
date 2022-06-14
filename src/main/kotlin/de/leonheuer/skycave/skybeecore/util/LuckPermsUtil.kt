@@ -18,7 +18,22 @@ object LuckPermsUtil {
 
     fun getUserGroup(player: Player): Group? {
         val user = luckPerms.getPlayerAdapter(Player::class.java).getUser(player)
-        return luckPerms.groupManager.getGroup(user.primaryGroup)
+
+        val groupsWithPrefix = HashMap<String, Group>()
+        for (group in luckPerms.groupManager.loadedGroups) {
+            if (group.cachedData.metaData.prefix != null) {
+                groupsWithPrefix[group.name] = group
+            }
+        }
+
+        val primaryGroup = user.getNodes(NodeType.INHERITANCE).stream()
+            .map { it as InheritanceNode }
+            .filter { groupsWithPrefix.contains(it.groupName) }
+            .map { groupsWithPrefix[it.groupName]!! }
+            .sorted { first, second -> second.weight.asInt.compareTo(first.weight.asInt) }
+            .collect(Collectors.toList())
+        if (primaryGroup.isEmpty()) return null
+        return primaryGroup.first()
     }
 
     fun getUserGroupExpiry(player: Player, groupName: String): Duration? {
@@ -26,7 +41,7 @@ object LuckPermsUtil {
         val expiry = user.getNodes(NodeType.INHERITANCE).stream()
             .filter(Node::hasExpiry)
             .filter{ (it as InheritanceNode).groupName == groupName }
-            .map(InheritanceNode::getExpiryDuration)
+            .map{ it.expiryDuration }
             .collect(Collectors.toList())
         if (expiry.isEmpty()) return null
         return expiry.first()
@@ -38,29 +53,9 @@ object LuckPermsUtil {
         return weight.toString().padStart(5, '0') + group.name
     }
 
-    fun getPrefix(group: Group): String? {
-        return group.cachedData.metaData.prefix
-    }
-
-    fun setSuffix(player: Player, suffix: String) {
+    fun getPrefix(player: Player): String? {
         val user = luckPerms.getPlayerAdapter(Player::class.java).getUser(player)
-        val suffixList = user.cachedData.metaData.suffixes
-
-        var weight = 0
-        for (w in suffixList.keys) {
-            if (w > weight) weight = w
-        }
-        suffixList[weight + 1] = suffix
-    }
-
-    fun removeSuffix(player: Player, suffix: String) {
-        val user = luckPerms.getPlayerAdapter(Player::class.java).getUser(player)
-        val suffixList = user.cachedData.metaData.suffixes
-        for (k in suffixList.keys) {
-            if (suffixList[k] == suffix) {
-                suffixList.remove(k)
-            }
-        }
+        return user.cachedData.metaData.prefix
     }
 
 }
