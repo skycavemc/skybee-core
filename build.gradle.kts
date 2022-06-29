@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "de.leonheuer.skycave"
-version = "1.4.2"
+version = "1.4.3"
 
 repositories {
     mavenCentral()
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("net.luckperms:api:5.4")
     compileOnly("com.onarandombox.multiversecore:Multiverse-Core:4.3.1")
